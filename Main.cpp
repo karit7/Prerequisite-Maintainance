@@ -8,8 +8,7 @@ using namespace std;
 
 /*
 struct custom_hash {
-    //http://docs.oracle.com/javase/8/docs/api/java/util/SplittableRandom.html
-    static uint64_t split_mix64(uint64_t seed) { seed += 0x9E3779B97F4A7C15; seed = (seed ^ (seed >> 30)) * 0xBF58476D1CE4E5B9; seed = (seed ^ (seed >> 27)) * 0x94D049BB133111EB; return seed ^ (seed >> 31); } size_t operator()(uint64_t seed) const { static const uint64_t FIXED_RANDOM = chrono::steady_clock::now().time_since_epoch().count(); return split_mix64(seed + FIXED_RANDOM); } };
+    static uint64_t split_mix64(uint64_t seed) { seed += 0x9e3779b97f4a7c15; seed = (seed ^ (seed >> 30)) * 0xbf58476d1ce4e5b9; seed = (seed ^ (seed >> 27)) * 0x94d049bb133111eb; return seed ^ (seed >> 31); } size_t operator()(uint64_t seed) const { static const uint64_t FIXED_RANDOM = chrono::steady_clock::now().time_since_epoch().count(); return split_mix64(seed + FIXED_RANDOM); } };
 */
 
 bool kahn_topological_sort(unordered_map < string, vector < string > > &directed_acyclic_graph, unordered_map < string, int > &in_degree_node, vector < string > &topological_order)
@@ -32,7 +31,6 @@ bool kahn_topological_sort(unordered_map < string, vector < string > > &directed
     }
     if((int)topological_order.size() != (int)directed_acyclic_graph.size())
         return false;
-    reverse(topological_order.begin(), topological_order.end());
     return true;
 }
 
@@ -58,9 +56,10 @@ int main()
             string dependent_node;
             cin >> dependent_node;
             directed_acyclic_graph[node].push_back(dependent_node);
-            in_degree_node[dependent_node]++;
+            directed_acyclic_graph[dependent_node].push_back(node);
             dependent_node_size--;
         }
+        in_degree_node[node] = directed_acyclic_graph[node].size();
         node_size--;
     }
     bool flag = kahn_topological_sort(directed_acyclic_graph, in_degree_node, topological_order);
