@@ -8,7 +8,19 @@ using namespace std;
 
 /*
 struct custom_hash {
-    static uint64_t split_mix64(uint64_t seed) { seed += 0x9e3779b97f4a7c15; seed = (seed ^ (seed >> 30)) * 0xbf58476d1ce4e5b9; seed = (seed ^ (seed >> 27)) * 0x94d049bb133111eb; return seed ^ (seed >> 31); } size_t operator()(uint64_t seed) const { static const uint64_t FIXED_RANDOM = chrono::steady_clock::now().time_since_epoch().count(); return split_mix64(seed + FIXED_RANDOM); } };
+    static uint64_t split_mix64(uint64_t seed) 
+    { 
+        seed += 0x9e3779b97f4a7c15; 
+        seed = (seed ^ (seed >> 30)) * 0xbf58476d1ce4e5b9; 
+        seed = (seed ^ (seed >> 27)) * 0x94d049bb133111eb; 
+        return seed ^ (seed >> 31); 
+    } 
+    size_t operator()(uint64_t seed) const 
+    { 
+        static const uint64_t FIXED_RANDOM = chrono::steady_clock::now().time_since_epoch().count(); 
+        return split_mix64(seed + FIXED_RANDOM); 
+    } 
+};
 */
 
 bool kahn_topological_sort(unordered_map < string, vector < string > > &directed_acyclic_graph, unordered_map < string, int > &in_degree_node, vector < string > &topological_order)
