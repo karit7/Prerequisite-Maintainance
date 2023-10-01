@@ -1,0 +1,1 @@
+An experimental project to maintain course prerequisite early in the university life. It was besically to clear the concepts of topological sorting algorithm. Finally, I had used Kahn's algorithm to sort topologically.
